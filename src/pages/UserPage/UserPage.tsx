@@ -97,7 +97,6 @@ const UserPage = () => {
   if (isError) {
     return <Typography color="error">Error loading data</Typography>;
   }
-
   return (
     <>
       <Button onClick={() => logout()}>Logout</Button>
@@ -118,10 +117,10 @@ const UserPage = () => {
           </TableHead>
           <TableBody>
             {documents?.map((row: DataType) =>
-              edit === row.id ? (
-                <EditRow row={row} key={row.id} onEdit={setEdit} />
+              edit === row._id ? (
+                <EditRow row={row} key={row._id} onEdit={setEdit} />
               ) : (
-                <TableRow key={row.id}>
+                <TableRow key={row._id}>
                   <TableCell>
                     {new Date(row.companySigDate).toLocaleString()}
                   </TableCell>
@@ -135,10 +134,10 @@ const UserPage = () => {
                   </TableCell>
                   <TableCell>{row.employeeSignatureName}</TableCell>
                   <TableCell>
-                    <Button onClick={() => setEdit(row.id as string)}>
+                    <Button onClick={() => setEdit(row._id as string)}>
                       Edit
                     </Button>
-                    <Button onClick={() => deleteDocument(row.id as string)}>
+                    <Button onClick={() => deleteDocument(row._id as string)}>
                       Delete
                     </Button>
                   </TableCell>

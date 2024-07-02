@@ -15,11 +15,11 @@ function LoginPage() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://test.v5.pryaniky.com/ru/data/v3/testmethods/docs/login",
-        { username, password }
-      );
-      const token = response.data.data.token;
+      const response = await axios.post("http://localhost:5000/auth/login", {
+        username,
+        password,
+      });
+      const token = response.data.token;
 
       login(token);
       navigate("/table");

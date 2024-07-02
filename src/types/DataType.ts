@@ -1,5 +1,5 @@
 export type DataType = {
-  id?: string;
+  _id?: string;
   companySigDate: Date | string;
   companySignatureName: string;
   documentName: string;

@@ -35,7 +35,7 @@ const EditRow: FC<EditRowTypes> = ({ row, onEdit }) => {
   });
 
   const handleApply = async () => {
-    await updateRecord(token as string, row.id as string, formData);
+    await updateRecord(token as string, row._id as string, formData);
     onEdit("");
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
