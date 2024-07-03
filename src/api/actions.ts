@@ -1,7 +1,7 @@
 import axios from "axios";
 import { DataType } from "../types/DataType";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://backendspa-i6dw.onrender.com";
 
 export const fetchData = async (token: string) => {
   const response = await axios.get(`${BASE_URL}/data/get`, {
