@@ -1,0 +1,41 @@
+.post-container {
+  display: flex;
+  //   justify-content: center;
+  padding: 10px 16px;
+  border: 1px solid rgba(185, 202, 211, 0.281);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  .post__avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-right: 8px;
+    padding-top: 3px;
+    width: 3rem;
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .post__main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: baseline;
+    align-items: baseline;
+    .post__username-date {
+      display: flex;
+      gap: 0.3rem;
+      span {
+        color: rgb(83, 100, 113);
+      }
+    }
+    h2 {
+      font-size: 1rem;
+    }
+    .post__buttons {
+      align-self: flex-end;
+    }
+  }
+}
