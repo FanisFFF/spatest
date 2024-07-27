@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PostInput from "../PostInput/PostInputComponent";
+import PostInput from "../PostInput/post-input.component";
 import { DataType } from "../../types/DataType";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createRecord, deleteRecord, fetchData } from "../../api/actions";
@@ -94,17 +94,23 @@ function Feed() {
           onAddPost={addDocument}
           onHandleChange={handleChange}
         ></PostInput>
-        {documentsReverse.map((row: DataType) =>
-          edit === row._id ? (
-            <EditRow row={row} key={row._id} onEdit={setEdit} />
-          ) : (
-            <Post
-              key={row._id}
-              data={row}
-              deleteDocument={deleteDocument}
-              setEdit={setEdit}
-            />
+        {documentsReverse.length > 0 ? (
+          documentsReverse.map((row: DataType) =>
+            edit === row._id ? (
+              <EditRow row={row} key={row._id} onEdit={setEdit} />
+            ) : (
+              <Post
+                key={row._id}
+                data={row}
+                deleteDocument={deleteDocument}
+                setEdit={setEdit}
+              />
+            )
           )
+        ) : (
+          <Typography style={{ marginTop: "2rem" }} color="primary">
+            Empty
+          </Typography>
         )}
 
         {error && <Typography color="error">{error}</Typography>}

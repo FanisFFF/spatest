@@ -1,0 +1,42 @@
+import SearchIcon from "@mui/icons-material/Search";
+import "./search-bar.styles.scss";
+import axios from "axios";
+import { BASE_URL } from "../../api/baseUrl";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+function SearchBar({ onSetData, onSetError }) {
+  const [search, setSearch] = useState("");
+  const { token } = useAuth();
+
+  async function handleSearch(e) {
+    e.preventDefault();
+    if (search.length < 1) return;
+    try {
+      const response = await axios.get(`${BASE_URL}/search/get/${search}`, {
+        headers: {
+          "x-auth": token,
+        },
+      });
+      onSetData(response.data.data);
+    } catch (error) {
+      onSetError(error as string);
+      console.log(error);
+    }
+  }
+  return (
+    <form onSubmit={handleSearch}>
+      <div className="search-bar">
+        <div className="search-bar__icon">
+          <SearchIcon />
+        </div>
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Search"
+        />
+      </div>
+    </form>
+  );
+}
+export default SearchBar;

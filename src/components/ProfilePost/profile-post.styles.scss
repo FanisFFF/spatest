@@ -1,4 +1,4 @@
-.post-container {
+.profile-post-container {
   display: flex;
   padding: 10px 16px;
   border: 1px solid rgba(185, 202, 211, 0.281);
@@ -9,7 +9,7 @@
   &:hover {
     background-color: rgba(185, 202, 211, 0.085);
   }
-  .post__avatar {
+  .profile-post__avatar {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -21,13 +21,13 @@
     }
   }
 
-  .post__main {
+  .profile-post__main {
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: baseline;
     align-items: baseline;
-    .post__username-date {
+    .profile-post__username-date {
       display: flex;
       gap: 0.3rem;
       span {
@@ -37,8 +37,9 @@
     h2 {
       font-size: 1rem;
     }
-    .post__buttons {
+    .profile-post__gutter {
       align-self: flex-end;
+      height: 2rem;
     }
   }
 }

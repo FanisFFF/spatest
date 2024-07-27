@@ -4,43 +4,49 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { useAuth } from "../../context/AuthContext";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import "./nav-bar.styles.scss";
+import NavBarLink from "../NavBarLink/navBar-link.component";
+
+const links = [
+  { text: "Home", to: "/home", icon: <HomeIcon /> },
+  {
+    text: "Notifications",
+    to: "/notifications",
+    icon: <NotificationsNoneIcon />,
+  },
+  { text: "Search", to: "/search", icon: <SearchIcon /> },
+];
 
 function NavBar() {
-  const { logout } = useAuth();
+  const { logout, username } = useAuth();
 
   return (
     <>
-      <div className="main-nav-container">
-        <div className="main__logo">
+      <header>
+        <div className="header__logo">
           <BorderColorIcon />
           <h1>PostIt</h1>
         </div>
-        <div className="main-nav">
-          <div className="main__links">
-            <div className="main__link">
-              <HomeIcon></HomeIcon>
-              <a href="#">Home</a>
-            </div>
-            <div className="main__link">
-              <NotificationsNoneIcon />
-              <a href="#">Notifications</a>
-            </div>
-            <div className="main__link">
-              <SearchIcon></SearchIcon>
-              <a href="#">Search</a>
-            </div>
+        <nav>
+          <ul className="nav__links">
+            {links.map((el) => (
+              <NavBarLink data={el}></NavBarLink>
+            ))}
+          </ul>
+        </nav>
+        <div className="logout">
+          <div>
+            <img src="/avatar.png" alt="" />
           </div>
-          <div className="main__logout">
-            <div>
-              <img src="/avatar.png" alt="" />
-            </div>
-            <div className="main__logout-text">
-              <h2>User</h2>
-              <Button onClick={() => logout()}>Logout</Button>
-            </div>
+          <div className="logout__logout-text">
+            <Link to={`/${username}`}>
+              <h2>{username}</h2>
+            </Link>
+            <Button onClick={() => logout()}>Logout</Button>
           </div>
         </div>
-      </div>
+      </header>
     </>
   );
 }

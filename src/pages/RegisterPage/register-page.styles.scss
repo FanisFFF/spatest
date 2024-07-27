@@ -1,31 +1,18 @@
-.login-page {
+.register-page {
+  display: grid;
   height: 100vh;
-  // place-content: center;
+  place-content: center;
   justify-content: center;
-  align-items: center;
-  display: flex;
-  gap: 2rem;
-  @media (max-width: 850px) {
-    flex-direction: column;
-    justify-content: start;
-    margin: 2rem 0;
-    gap: 0rem;
+  .register {
+    max-width: 450px;
   }
-  .login {
-    display: grid;
-    justify-content: center;
-  }
-
-  .login__icon svg {
+  .register__icon svg {
     aspect-ratio: 1;
     height: 250px;
     width: 250px;
-    @media (max-width: 850px) {
-      width: 150px;
-    }
   }
 }
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -33,7 +20,7 @@
     margin-bottom: 1rem;
   }
 }
-.login__create-account {
+.register__create-account {
   a {
     text-decoration: none;
   }

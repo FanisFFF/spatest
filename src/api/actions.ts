@@ -1,9 +1,7 @@
 import axios from "axios";
 import { DataType } from "../types/DataType";
-import { useAuth } from "../context/AuthContext";
+import { BASE_URL } from "./baseUrl";
 
-const BASE_URL = "https://backendspa-i6dw.onrender.com";
-// const BASE_URL = "http://localhost:5000";
 export const fetchData = async (token: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/data/get`, {
@@ -16,6 +14,18 @@ export const fetchData = async (token: string) => {
     localStorage.removeItem("token");
   }
 };
+export const fetchProfile = async (token: string, username: string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/data/get/${username}`, {
+      headers: {
+        "x-auth": token,
+      },
+    });
+    return response.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const createRecord = async (token: string, data: DataType) => {
   try {
@@ -24,7 +34,6 @@ export const createRecord = async (token: string, data: DataType) => {
         "x-auth": token,
       },
     });
-    console.log(response);
     return response.data;
   } catch (err) {
     console.log(err);

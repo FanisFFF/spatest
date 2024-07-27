@@ -1,4 +1,3 @@
-import { Button, TableCell, TableRow, TextField } from "@mui/material";
 import { FC, useState } from "react";
 import { updateRecord } from "../../api/actions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -32,7 +31,7 @@ const EditRow: FC<EditRowTypes> = ({ row, onEdit }) => {
     await updateRecord(token as string, row._id as string, formData);
     onEdit("");
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
@@ -56,13 +55,6 @@ const EditRow: FC<EditRowTypes> = ({ row, onEdit }) => {
         </div>
       </div>
     </div>
-    // <Button
-    //   variant="contained"
-    //   color="primary"
-    //   onClick={() => updateDocument()}
-    // >
-    //   Apply
-    // </Button>
   );
 };
 export default EditRow;
