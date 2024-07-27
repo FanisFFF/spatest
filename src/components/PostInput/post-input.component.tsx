@@ -1,6 +1,16 @@
+import { FC } from "react";
 import "./post-input.styles.scss";
+type PostInputProps = {
+  onHandleChange: () => void;
+  onAddPost: () => void;
+  valueText: string;
+};
 
-function PostInput({ onHandleChange, onAddPost, valueText }) {
+const PostInput: FC<PostInputProps> = ({
+  onHandleChange,
+  onAddPost,
+  valueText,
+}) => {
   const isDisabled = valueText.length < 1;
   const color = isDisabled ? "rgba(29, 156, 240, 0.356)" : "rgb(29, 155, 240)";
   const cursor = isDisabled ? "" : "pointer";
@@ -32,5 +42,5 @@ function PostInput({ onHandleChange, onAddPost, valueText }) {
       </div>
     </div>
   );
-}
+};
 export default PostInput;

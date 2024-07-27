@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "./search-result.styles.scss";
-
-function SearchResult({ data }) {
+import { DataType } from "../../types/DataType";
+import { FC } from "react";
+type SearchResultProps = {
+  data: DataType;
+};
+const SearchResult: FC<SearchResultProps> = ({ data }) => {
   const { username } = data;
   return (
     <div className="search-result__user">
@@ -16,5 +20,5 @@ function SearchResult({ data }) {
       </div>
     </div>
   );
-}
+};
 export default SearchResult;

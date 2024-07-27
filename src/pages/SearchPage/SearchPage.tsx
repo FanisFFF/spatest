@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { DataType } from "../../types/DataType";
 import { CircularProgress, Typography } from "@mui/material";
-import NavBar from "../../components/NavBar/nav-bar.component";
-import Aside from "../../components/Aside/aside.component";
 import { useParams } from "react-router-dom";
-import ExploreUser from "../../components/ExploreUser/explore-user.component";
 import SearchBar from "../../components/SearchBar/search-bar.component";
 import SearchResult from "../../components/SearchResult/search-result.component";
 import "./search-page.styles.scss";

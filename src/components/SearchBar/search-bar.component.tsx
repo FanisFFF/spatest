@@ -2,13 +2,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./search-bar.styles.scss";
 import axios from "axios";
 import { BASE_URL } from "../../api/baseUrl";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-function SearchBar({ onSetData, onSetError }) {
+import { DataType } from "../../types/DataType";
+type SearchBarProps = {
+  onSetData: (data: DataType[]) => void;
+  onSetError: (error: string) => void;
+};
+
+const SearchBar: FC<SearchBarProps> = ({ onSetData, onSetError }) => {
   const [search, setSearch] = useState("");
   const { token } = useAuth();
 
-  async function handleSearch(e) {
+  async function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (search.length < 1) return;
     try {
@@ -38,5 +44,5 @@ function SearchBar({ onSetData, onSetError }) {
       </div>
     </form>
   );
-}
+};
 export default SearchBar;

@@ -3,7 +3,7 @@ import PostInput from "../PostInput/post-input.component";
 import { DataType } from "../../types/DataType";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createRecord, deleteRecord, fetchData } from "../../api/actions";
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import Post from "../Post/post.component";
 import { useAuth } from "../../context/AuthContext";
 import EditRow from "../EditRow/EditRow";
@@ -19,7 +19,6 @@ function Feed() {
   const [edit, setEdit] = useState("");
   const [error, setError] = useState("");
   const { token } = useAuth();
-
   const queryClient = useQueryClient();
 
   const queryFetchData = async () => {

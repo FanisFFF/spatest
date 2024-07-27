@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./navBar-link.styles.scss";
+import { TNavBarData } from "../../types/DataType";
+import { FC } from "react";
+type NavBarLinkProps = {
+  data: TNavBarData;
+};
 
-function NavBarLink({ data }) {
+const NavBarLink: FC<NavBarLinkProps> = ({ data }) => {
   const { to, text, icon } = data;
   const location = useLocation();
   const isCurrent = location.pathname == to;
@@ -15,5 +20,5 @@ function NavBarLink({ data }) {
       </Link>
     </li>
   );
-}
+};
 export default NavBarLink;

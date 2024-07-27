@@ -1,8 +1,16 @@
 import { Button } from "@mui/material";
 import "./post.styles.scss";
 import { Link } from "react-router-dom";
+import { DataType } from "../../types/DataType";
+import { FC } from "react";
 
-function Post({ data, deleteDocument, setEdit }) {
+type PostProps = {
+  data: DataType;
+  deleteDocument: (id: string) => void;
+  setEdit: (id: string) => void;
+};
+
+const Post: FC<PostProps> = ({ data, deleteDocument, setEdit }) => {
   const { postText, _id, companySigDate, username } = data;
   const postDate = new Date(companySigDate);
   const month = postDate.toLocaleString("default", { month: "long" });
@@ -31,5 +39,5 @@ function Post({ data, deleteDocument, setEdit }) {
       </div>
     </div>
   );
-}
+};
 export default Post;

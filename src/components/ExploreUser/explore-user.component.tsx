@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import "./explore-user.styles.scss";
+import { FC } from "react";
+import { TUserData } from "../../types/DataType";
+type ExploreUserProps = {
+  data: TUserData;
+};
 
-function ExploreUser({ data }) {
+const ExploreUser: FC<ExploreUserProps> = ({ data }) => {
   const { username } = data;
   return (
     <div className="explore__user">
@@ -16,5 +21,5 @@ function ExploreUser({ data }) {
       </div>
     </div>
   );
-}
+};
 export default ExploreUser;

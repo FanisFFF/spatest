@@ -1,7 +1,13 @@
+import { FC } from "react";
+import { DataType } from "../../types/DataType";
 import "./profile-post.styles.scss";
 import { Link } from "react-router-dom";
 
-function ProfilePost({ data }) {
+type ProfilePostProps = {
+  data: DataType;
+};
+
+const ProfilePost: FC<ProfilePostProps> = ({ data }) => {
   const { postText, companySigDate, username } = data;
   const postDate = new Date(companySigDate);
   const month = postDate.toLocaleString("default", { month: "long" });
@@ -27,5 +33,5 @@ function ProfilePost({ data }) {
       </div>
     </div>
   );
-}
+};
 export default ProfilePost;

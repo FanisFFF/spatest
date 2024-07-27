@@ -4,9 +4,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./register-page.styles.scss";
+import { BASE_URL } from "../../api/baseUrl";
 
-// const BASE_LOGIN_URL = "https://backendspa-i6dw.onrender.com";
-const BASE_LOGIN_URL = "http://localhost:5000";
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,12 +18,12 @@ function RegisterPage() {
     e.preventDefault();
     try {
       setIsLoading(true);
-      await axios.post(`${BASE_LOGIN_URL}/auth/register`, {
+      await axios.post(`${BASE_URL}/auth/register`, {
         username,
         password,
       });
       //   const token = response.data.token;
-      const response2 = await axios.post(`${BASE_LOGIN_URL}/auth/login`, {
+      const response2 = await axios.post(`${BASE_URL}/auth/login`, {
         username,
         password,
       });
@@ -33,9 +32,7 @@ function RegisterPage() {
       const currentUser = response2.data.username;
 
       login(token, currentUser);
-      navigate("/table");
-      //   login(token);
-      //   navigate("/table");
+      navigate("/home");
     } catch (err) {
       setIsLoading(false);
       console.log(err);
