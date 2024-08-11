@@ -9,17 +9,17 @@ type ExploreUserProps = {
 const ExploreUser: FC<ExploreUserProps> = ({ data }) => {
   const { username } = data;
   return (
-    <div className="explore__user">
-      <div className="explore__avatar">
-        <img src="/avatar.png" alt="user-avatar" />
-      </div>
-      <div className="explore__text">
-        <Link to={`/${username}`}>
+    <Link to={`/${username}`}>
+      <div className="explore__user">
+        <div className="explore__avatar">
+          <img src="/avatar.png" alt="user-avatar" />
+        </div>
+        <div className="explore__text">
           <h2>{username}</h2>
-        </Link>
-        <p>Lorem ipsum</p>
+          <p>Lorem ipsum</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default ExploreUser;

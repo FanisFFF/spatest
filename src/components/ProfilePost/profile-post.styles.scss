@@ -1,6 +1,5 @@
 .profile-post-container {
-  display: flex;
-  padding: 10px 16px;
+  padding: 8px 16px;
   border: 1px solid rgba(185, 202, 211, 0.281);
   border-top: none;
   border-left: none;
@@ -8,6 +7,9 @@
   transition: background-color 0.3s ease-in-out;
   &:hover {
     background-color: rgba(185, 202, 211, 0.085);
+  }
+  .profile-post__content {
+    display: flex;
   }
   .profile-post__avatar {
     display: flex;
@@ -28,18 +30,37 @@
     justify-content: baseline;
     align-items: baseline;
     .profile-post__username-date {
+      margin-left: 0.3rem;
       display: flex;
       gap: 0.3rem;
       span {
         color: rgb(83, 100, 113);
       }
+      a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     h2 {
       font-size: 1rem;
     }
-    .profile-post__gutter {
-      align-self: flex-end;
-      height: 2rem;
+  }
+  .profile-post__gutter {
+    display: flex;
+    position: relative;
+    justify-content: end;
+    gap: 1rem;
+    margin-top: 0.4rem;
+    align-items: center;
+    align-self: flex-start;
+    color: gray;
+    svg {
+      transform: translateY(6px);
+      height: 1.3rem;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

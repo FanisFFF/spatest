@@ -8,14 +8,14 @@ type NavBarLinkProps = {
 };
 
 const NavBarLink: FC<NavBarLinkProps> = ({ data }) => {
-  const { to, text, icon } = data;
+  const { to, text, iconOutlined, iconFilled } = data;
   const location = useLocation();
   const isCurrent = location.pathname == to;
 
   return (
     <li style={{ fontWeight: isCurrent ? "700" : "400" }} className="nav__link">
       <Link to={to}>
-        {icon}
+        {isCurrent ? iconFilled : iconOutlined}
         <span className="nav__link-text">{text}</span>
       </Link>
     </li>

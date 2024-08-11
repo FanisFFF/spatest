@@ -8,9 +8,14 @@ import { DataType } from "../../types/DataType";
 type SearchBarProps = {
   onSetData: (data: DataType[]) => void;
   onSetError: (error: string) => void;
+  onSetIsLoading: (boolean: boolean) => void;
 };
 
-const SearchBar: FC<SearchBarProps> = ({ onSetData, onSetError }) => {
+const SearchBar: FC<SearchBarProps> = ({
+  onSetData,
+  onSetError,
+  onSetIsLoading,
+}) => {
   const [search, setSearch] = useState("");
   const { token } = useAuth();
 
@@ -18,13 +23,16 @@ const SearchBar: FC<SearchBarProps> = ({ onSetData, onSetError }) => {
     e.preventDefault();
     if (search.length < 1) return;
     try {
+      onSetIsLoading(true);
       const response = await axios.get(`${BASE_URL}/search/get/${search}`, {
         headers: {
           "x-auth": token,
         },
       });
       onSetData(response.data.data);
+      onSetIsLoading(false);
     } catch (error) {
+      onSetIsLoading(false);
       onSetError(error as string);
       console.log(error);
     }

@@ -1,6 +1,6 @@
 .explore {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem;
   flex-direction: column;
   margin-left: 2rem;
   border: 1px solid rgba(185, 202, 211, 0.281);
@@ -18,6 +18,7 @@
   .explore__user {
     display: flex;
     gap: 1rem;
+    padding: 0.3rem 0;
     align-items: center;
     transition: background-color 0.3s ease-in-out;
     padding-left: 1rem;

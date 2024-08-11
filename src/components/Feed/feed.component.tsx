@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import PostInput from "../PostInput/post-input.component";
 import { DataType } from "../../types/DataType";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -7,6 +7,8 @@ import { CircularProgress, Typography } from "@mui/material";
 import Post from "../Post/post.component";
 import { useAuth } from "../../context/AuthContext";
 import EditRow from "../EditRow/EditRow";
+import ProfilePost from "../ProfilePost/profile-post.component";
+import LoadingScreen from "../LoadinScreen/loading-screen.component";
 
 const INITIAL_FORM_DATA = {
   companySigDate: new Date(),
@@ -51,8 +53,8 @@ function Feed() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const handleDelete = async (id: string) => {
@@ -77,7 +79,7 @@ function Feed() {
   const documentsReverse = [].concat(documents).reverse();
 
   if (isLoading) {
-    return <CircularProgress />;
+    return <LoadingScreen />;
   }
 
   if (isError) {
@@ -98,11 +100,11 @@ function Feed() {
             edit === row._id ? (
               <EditRow row={row} key={row._id} onEdit={setEdit} />
             ) : (
-              <Post
+              <ProfilePost
                 key={row._id}
                 data={row}
-                deleteDocument={deleteDocument}
-                setEdit={setEdit}
+                // deleteDocument={deleteDocument}
+                // setEdit={setEdit}
               />
             )
           )

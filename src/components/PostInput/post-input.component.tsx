@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import "./post-input.styles.scss";
 type PostInputProps = {
-  onHandleChange: () => void;
+  onHandleChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onAddPost: () => void;
   valueText: string;
 };

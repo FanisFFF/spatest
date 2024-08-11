@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { DataType } from "../../types/DataType";
-import { CircularProgress, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Typography } from "@mui/material";
+// import { useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/search-bar.component";
 import SearchResult from "../../components/SearchResult/search-result.component";
 import "./search-page.styles.scss";
+import LoadingScreen from "../../components/LoadinScreen/loading-screen.component";
 
 function SearchPage() {
   const [data, setData] = useState([] as DataType[]);
   const [error, setError] = useState("");
-  const params = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  // const params = useParams();
 
   return (
     <>
@@ -21,15 +23,24 @@ function SearchPage() {
         }}
       >
         <div className="main__col-2">
-          <SearchBar onSetData={setData} onSetError={setError}></SearchBar>
+          <SearchBar
+            onSetData={setData}
+            onSetIsLoading={setIsLoading}
+            onSetError={setError}
+          ></SearchBar>
         </div>
         <div className="search-results">
-          {data.length > 0 ? (
+          {isLoading ? (
+            <LoadingScreen />
+          ) : data.length > 0 ? (
             data.map((row: DataType) => (
               <SearchResult key={row._id} data={row} />
             ))
           ) : (
-            <Typography style={{ marginTop: "2rem" }} color="primary">
+            <Typography
+              style={{ marginTop: "2rem", textAlign: "center" }}
+              color="primary"
+            >
               Not found
             </Typography>
           )}

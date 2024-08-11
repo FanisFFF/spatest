@@ -1,0 +1,18 @@
+.notifications {
+  width: 100%;
+  max-width: 600px;
+  padding-top: 1rem;
+  h2 {
+    margin-left: 1rem;
+  }
+
+  //   padding: 1rem;
+  .notifications__container {
+    margin-top: 1.5rem;
+    display: flex;
+    border-top: 1px solid rgba(185, 202, 211, 0.281);
+
+    flex-direction: column;
+    // gap: 2rem;
+  }
+}

@@ -1,21 +1,34 @@
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { useAuth } from "../../context/AuthContext";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./nav-bar.styles.scss";
 import NavBarLink from "../NavBarLink/navBar-link.component";
-
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 const links = [
-  { text: "Home", to: "/home", icon: <HomeIcon /> },
+  {
+    text: "Home",
+    to: "/home",
+    iconOutlined: <HomeOutlinedIcon />,
+    iconFilled: <HomeIcon />,
+  },
   {
     text: "Notifications",
     to: "/notifications",
-    icon: <NotificationsNoneIcon />,
+    iconOutlined: <NotificationsOutlinedIcon />,
+    iconFilled: <NotificationsIcon />,
   },
-  { text: "Search", to: "/search", icon: <SearchIcon /> },
+  {
+    text: "Search",
+    to: "/search",
+    iconOutlined: <SearchOutlinedIcon />,
+    iconFilled: <SearchIcon />,
+  },
 ];
 
 function NavBar() {
@@ -30,8 +43,8 @@ function NavBar() {
         </div>
         <nav>
           <ul className="nav__links">
-            {links.map((el) => (
-              <NavBarLink data={el}></NavBarLink>
+            {links.map((el, i) => (
+              <NavBarLink data={el} key={i}></NavBarLink>
             ))}
           </ul>
         </nav>
