@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import { DataType } from "../../types/DataType";
 import "./profile-post.styles.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -29,46 +29,54 @@ const ProfilePost: FC<ProfilePostProps> = ({ data }) => {
   // Mutations
   const { mutate: likePost } = useMutation({
     mutationFn: handleLike,
-    onSuccess: () => {
+    onSuccess: (e) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["data"] });
     },
   });
 
-  async function handleLike() {
+  const navigate = useNavigate();
+  const link = `/${username}/${_id}`;
+  function handleNavigate() {
+    navigate(link);
+  }
+  async function handleLike(e: MouseEvent<HTMLDivElement>) {
+    // Prevent navigation by stopping event propagation
     console.log("clickd");
     if (isLiked) return;
     await likeRecord(token as string, _id as string, data);
   }
+
   return (
     <>
-      <div className="profile-post-container">
-        <Link to={`/${username}/${_id}`}>
-          <div className="profile-post__content">
-            <div className="profile-post__avatar">
-              <img src="/avatar.png" alt="user-avatar" />
+      <div className="profile-post-container" onClick={handleNavigate}>
+        <div className="profile-post__content">
+          <div className="profile-post__avatar">
+            <img src="/avatar.png" alt="user-avatar" />
+          </div>
+          <div className="profile-post__main">
+            <div className="profile-post__username-date">
+              <h2>{username}</h2>
+              <span>
+                · {day} {month}
+              </span>
             </div>
-            <div className="profile-post__main">
-              <div className="profile-post__username-date">
-                {/* <Link to={`/${username}`}> */}
-                <h2>{username}</h2>
-                {/* </Link> */}
-                <span>
-                  · {day} {month}
-                </span>
-              </div>
-              <div>
-                <p>{postText}</p>
-              </div>
+            <div>
+              <p>{postText}</p>
             </div>
           </div>
-        </Link>
+        </div>
         <div className="profile-post__gutter">
           <div>
             <ChatBubbleOutlineIcon />
             <span>{replyCount}</span>
           </div>
-          <div onClick={likePost}>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              return likePost();
+            }}
+          >
             {isLiked ? (
               <FavoriteIcon />
             ) : (
@@ -81,4 +89,5 @@ const ProfilePost: FC<ProfilePostProps> = ({ data }) => {
     </>
   );
 };
+
 export default ProfilePost;

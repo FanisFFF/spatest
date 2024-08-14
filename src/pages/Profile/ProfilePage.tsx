@@ -6,6 +6,7 @@ import "./profile.styles.scss";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProfile } from "../../api/actions";
 import { DataType } from "../../types/DataType";
+import LoadingScreen from "../../components/LoadinScreen/loading-screen.component";
 
 function ProfilePage() {
   const { token } = useAuth();
@@ -17,12 +18,12 @@ function ProfilePage() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["profileData", params.username], // queryKey includes username
+    queryKey: ["profileData", params.username],
     queryFn: () => fetchProfile(token as string, params.username as string),
-    enabled: !!params.username && !!token, // Ensures fetch only happens if username and token exist
+    enabled: !!params.username && !!token,
   });
 
-  const reversed: DataType[] = postData.slice().reverse(); // Reverse posts order
+  const reversed: DataType[] = postData.slice().reverse();
 
   return (
     <div className="profile-page">
@@ -42,11 +43,7 @@ function ProfilePage() {
         </div>
       </div>
       <div className="profile-page__posts">
-        {isLoading && (
-          <Typography style={{ marginTop: "2rem" }} color="primary">
-            Loading...
-          </Typography>
-        )}
+        {isLoading && <LoadingScreen />}
         {reversed.length > 0 ? (
           reversed.map((row: DataType) => (
             <ProfilePost key={row._id} data={row} />

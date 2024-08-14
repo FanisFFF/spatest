@@ -6,6 +6,7 @@
   border-right: none;
   transition: background-color 0.3s ease-in-out;
   &:hover {
+    cursor: pointer;
     background-color: rgba(185, 202, 211, 0.085);
   }
   .profile-post__content {
